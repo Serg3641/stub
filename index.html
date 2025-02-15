@@ -392,6 +392,35 @@
         margin-left: 0 !important;
       }
     }
+    
+    /* =============================== */
+    /* Виджет для WhatsApp и Telegram */
+    /* =============================== */
+    #contact-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 10000;
+      /* Плавное появление и пульсация */
+      animation: pulse 2s infinite;
+    }
+    #contact-widget a {
+      display: block;
+    }
+    #contact-widget img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -487,6 +516,16 @@
     </a>
     <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
       <img src="icons/apple-icon.png" alt="App Store">
+    </a>
+  </div>
+  
+  <!-- Виджет для WhatsApp и Telegram -->
+  <div id="contact-widget">
+    <a href="https://wa.me/79997001010" target="_blank">
+      <img src="icons/whatsapp-icon.png" alt="WhatsApp">
+    </a>
+    <a href="https://t.me/+79997001010" target="_blank">
+      <img src="icons/telegram-icon.png" alt="Telegram">
     </a>
   </div>
 </body>
