@@ -374,11 +374,20 @@
         width: 100%;
         margin-top: 10px;
       }
-      /* Центрируем только заголовок "Уважаемый абонент!" */
       .bottom-info h1 {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        text-align: center !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff; /* сохраняем белый фон */
+        padding: 10px 0;
+        margin: 0;
+        text-align: center;
+        z-index: 2000;
+    /* Цвет остается, как задан: var(--link-color) */
+      }
+      .header {
+        margin-top: 60px; /* создаем отступ, равный высоте заголовка */
       }
       .bottom-info .info-payment,
       .qr-payment {
