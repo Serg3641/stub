@@ -185,7 +185,7 @@
       flex-direction: column;
       gap: 10px;
     }
-    /* В десктопе содержимое .intro-right выводится как есть */
+    /* Для десктопа разделяем содержимое правой части на два блока */
     .top-info,
     .bottom-info {
       width: 100%;
@@ -334,9 +334,9 @@
         width: 100px;
       }
       /* Перестраиваем секцию .intro с помощью CSS grid:
-         - левая ячейка (40%) – робот (.intro-left)
-         - правая ячейка (60%) – предупреждение (.top-info)
-         - вторая строка – остальная информация (.bottom-info), растянутая на всю ширину */
+         - Первая строка: левая ячейка (40%) – робот (.intro-left);
+                        правая ячейка (60%) – блок с предупреждением (.top-info)
+         - Вторая строка: блок с остальной информацией (.bottom-info), растянутый на всю ширину */
       .intro {
         display: grid;
         grid-template-columns: 40% 60%;
@@ -349,21 +349,32 @@
       .intro-left {
         grid-area: robot;
       }
-      /* Делаем так, чтобы содержимое блока .intro-right не создавало дополнительный контейнер */
+      /* Делаем так, чтобы содержимое правой части не оборачивалось дополнительным контейнером */
       .intro-right {
         display: contents;
       }
       .top-info {
         grid-area: warning;
-        /* Выравниваем текст по левому краю без отступов */
-        margin: 0;
+        margin: 0 !important;
+        text-align: left;
         font-size: 16px;
         line-height: 1.2;
+      }
+      .top-info .warning {
+        margin: 0 !important;
       }
       .bottom-info {
         grid-area: bottom;
         width: 100%;
         margin-top: 10px;
+      }
+      /* Сбрасываем отступы у остальных элементов в .bottom-info */
+      .bottom-info h1,
+      .bottom-info .info-payment,
+      .qr-payment,
+      .payment-options {
+        margin-left: 0 !important;
+        text-align: left;
       }
     }
   </style>
