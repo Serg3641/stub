@@ -23,7 +23,7 @@
       --base-spacing: 55px;
     }
     html, body {
-      min-height: 100vh;         /* Минимальная высота страницы равна высоте окна */
+      min-height: 100vh;         /* Используем min-height вместо height */
       margin: 0;                 
       overflow-x: hidden;
     }
@@ -99,12 +99,12 @@
       align-items: center;
       gap: 20px;
     }
-    /* Уменьшаем отрицательный отступ, чтобы текст не накладывался */
+    /* Контактный блок */
     .contact-info {
       display: flex;
       flex-direction: column;
       gap: 5px;
-      margin-left: -20px;
+      margin-left: calc(-1 * var(--base-spacing));
     }
     .contacts .info {
       font-size: 14px;
@@ -139,7 +139,7 @@
       flex: 1;
       margin-top: 20px;
       padding: 20px 0 40px;
-      /* Убираем overflow: hidden, чтобы контент не обрезался */
+      /* Убрано overflow: hidden, чтобы контент не обрезался */
     }
     .main-content .container {
       display: flex;
@@ -266,7 +266,7 @@
       text-align: center;
       font-size: 22px;
       padding: 20px;
-      margin-top: auto; /* Пушим футер вниз */
+      margin-top: auto; /* Футер прижат к низу */
     }
     .app-download p {
       margin: 0 0 10px;
@@ -301,7 +301,7 @@
     /* =============================== */
     /* Для экранов 1920px и ниже */
     @media (max-width: 1920px) {
-      /* Базовые размеры можно оставить */
+      /* базовые размеры */
     }
     /* Для экранов 1200px и ниже */
     @media (max-width: 1200px) {
