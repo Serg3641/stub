@@ -2,16 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <!-- Разрешаем масштабирование для сенсорных устройств -->
+  <!-- Мета-тег для корректного расчёта CSS‑ширины -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Интерсити - Доступ приостановлен</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
-    /* =============================== */
     /* ГЛОБАЛЬНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ */
-    /* =============================== */
     :root {
       --primary: #66c02e;
       --secondary: #76AC00;
@@ -22,23 +20,15 @@
       --transition-speed: 0.3s;
       --base-spacing: 40px;
     }
-    /* Используем min-height вместо height, чтобы страница могла расширяться и футер не перекрывал контент */
     html, body {
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
     }
-    /* На устройствах с сенсорным экраном разрешаем горизонтальную прокрутку */
+    /* Если устройство сенсорное – разрешаем горизонтальный скролл */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
-      }
-    }
-    /* Для экранов до 600px (смартфоны): скрываем текст логотипа и информацию о режиме работы */
-    @media (max-width: 600px) {
-      .logo-title,
-      .contacts .info {
-        display: none !important;
       }
     }
     body {
@@ -63,16 +53,11 @@
       margin: 0 auto;
       padding: 0 15px;
     }
-    /* =============================== */
-    /* АНИМАЦИЯ ПОДЪЁМА СТРАНИЦЫ */
-    /* =============================== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* =============================== */
     /* ШАПКА САЙТА */
-    /* =============================== */
     .header-bar {
       background-color: var(--primary);
       height: 25px;
@@ -144,9 +129,7 @@
     .contacts .phones a img {
       height: 18px;
     }
-    /* =============================== */
     /* ОСНОВНОЕ СОДЕРЖИМОЕ */
-    /* =============================== */
     .main-content {
       flex: 1;
       margin-top: 20px;
@@ -245,7 +228,6 @@
       margin: 0;
       padding: 0;
     }
-    /* Блок иконок приложений */
     .payment-options {
       display: flex;
       gap: 30px;
@@ -260,15 +242,13 @@
     .payment-options img {
       height: 40px;
     }
-    /* Контейнер для QR-кода и иконок – для мобильной перестановки */
+    /* Контейнер для QR-кода и иконок (будет перемещён под робота) */
     .qr-section {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    /* =============================== */
     /* НИЖНЯЯ ЧАСТЬ САЙТА */
-    /* =============================== */
     .app-download {
       background: var(--primary);
       font-family: var(--font-main);
@@ -292,9 +272,6 @@
       margin-top: 30px;
       transition: transform var(--transition-speed);
     }
-    /* =============================== */
-    /* HOVER ЭФФЕКТЫ */
-    /* =============================== */
     a:hover {
       opacity: 0.9;
     }
@@ -306,9 +283,6 @@
     .app-download a:hover {
       transform: translateY(-10px);
     }
-    /* =============================== */
-    /* АДАПТИВНЫЕ СТИЛИ */
-    /* =============================== */
     @media (max-width: 1200px) {
       .logo { margin-left: 50px; }
       .logo-title { margin-left: 10px; }
@@ -321,56 +295,57 @@
       .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
       .app-download { font-size: 22px; }
     }
-    /* =============================== */
-    /* Мобильные стили (макс. ширина 600px) */
-    /* =============================== */
+    /* Мобильные стили для экранов до 600px */
     @media (max-width: 600px) {
-      /* 1. Сдвигаем номера телефонов влево */
+      /* 1. Скрываем текст логотипа и информации о режиме работы */
+      .logo-title,
+      .contacts .info {
+        display: none !important;
+      }
+      /* 2. Сдвигаем номера телефонов влево */
       .contacts .phones {
-        margin-left: -10px;
+        margin-left: -10px !important;
       }
-      /* 2. Делаем контейнер с информацией о подписке вертикальным и убираем отступы слева у текстов */
-      .intro {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      /* 3. Обнуляем отступы слева у текстовых блоков */
       .intro-right h1,
       .warning,
       .info-payment,
       .qr-payment,
       .payment-options {
-        margin-left: 0;
+        margin-left: 0 !important;
+        text-align: left !important;
       }
-      /* 3. Переставляем блок с QR-кодом и иконками – помещаем его в отдельный контейнер с зелёной рамкой,
-             и с помощью order выводим его выше текстовых блоков внутри .intro-right */
+      /* Переставляем блок с QR-кодом и иконками под изображение робота */
+      .intro {
+        flex-direction: column !important;
+      }
       .intro-right {
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
       }
-      .intro-right .qr-section {
-        order: -1;
-        width: 100%;
-        border: 2px solid var(--primary);
-        border-radius: 4px;
-        padding: 10px;
-        margin-bottom: 10px;
+      .qr-section {
+        order: -1 !important;
+        width: 100% !important;
+        border: 2px solid var(--primary) !important;
+        border-radius: 4px !important;
+        padding: 10px !important;
+        margin-bottom: 10px !important;
       }
-      /* Центрируем содержимое внутри QR-блока */
       .qr-payment {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 0;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-top: 0 !important;
       }
       .qr-payment .qr-left,
       .qr-payment .qr-right {
-        width: 100%;
-        text-align: center;
-        margin: 0;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0 !important;
       }
       .payment-options {
-        justify-content: center;
-        margin-top: 10px;
+        justify-content: center !important;
+        margin-top: 10px !important;
       }
     }
   </style>
@@ -381,23 +356,19 @@
   <div class="header">
     <div class="container">
       <div class="header-content">
-        <!-- Логотип -->
         <div class="logo">
           <a href="https://interciti.ru/">
             <img src="images/logo.png" alt="Интерсити Логотип">
           </a>
           <div class="logo-title">Интернет в дом и офис</div>
         </div>
-        <!-- Контакты -->
         <div class="contacts">
           <div class="contact-info">
-            <!-- Информация о режиме работы (скрывается на смартфонах) -->
             <div class="info">
               <div>Вам ответят с 8.00 до 20.00</div>
               <div>без выходных</div>
             </div>
           </div>
-          <!-- Телефоны -->
           <div class="phones">
             <a href="tel:+78007077384">
               <img src="icons/phone-icon.png" alt="Телефон">8 (800) 707-73-84
@@ -413,14 +384,13 @@
   <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
   <div class="main-content">
     <div class="container">
-      <!-- Контент (боковая панель удалена) -->
       <div class="content">
         <div class="intro">
           <div class="intro-left">
             <img src="images/robot.png" alt="Робот">
           </div>
           <div class="intro-right">
-            <!-- Блок QR-кода и иконок, который на мобильных устройствах перемещается выше -->
+            <!-- Блок QR-кода и иконок -->
             <div class="qr-section">
               <div class="qr-payment">
                 <div class="qr-left">
@@ -461,7 +431,6 @@
   <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
   <div class="app-download">
     <p>Скачивайте наше приложение</p>
-    <!-- Ссылки на магазины объединены без пробелов -->
     <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
       <img src="icons/google-icon.png" alt="Google Play">
     </a>
