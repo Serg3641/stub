@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Интерсити - Доступ приостановлен</title>
-  <!-- Подключение шрифтов с Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -302,29 +301,26 @@
       .logo-title {
         display: none;
       }
-      /* 2. Перестраиваем блок контактов: номера телефонов перемещаем вверх и выравниваем по левому краю */
+      /* 2. Перестраиваем блок контактов: выводим номера телефонов выше, выравниваем по левому краю */
       .contacts {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
       }
+      .contact-info {
+        order: 2;
+        margin-left: 0;
+        margin-top: 5px;
+      }
       .phones {
         order: 1;
         margin-left: 0;
       }
-      .contact-info {
-        order: 2;
-        margin-left: 0;
-      }
-      .contacts .info {
-        margin-top: 5px;
-        text-align: left;
-      }
-      /* 3. Уменьшаем изображение робота до 150px */
+      /* 3. Робота уменьшаем до 150px */
       .intro-left img {
         width: 150px;
       }
-      /* 4. Сдвигаем весь контент справа от робота влево (убираем отступы) */
+      /* 4. Сдвигаем контент справа от робота влево */
       .intro-right {
         margin-left: 0;
       }
@@ -335,18 +331,20 @@
       }
     }
     
-    /* Дополнительные media-запросы можно настроить по необходимости */
+    /* =============================== */
+    /* Дополнительные media-запросы для промежуточных размеров */
+    /* (Настраивайте по необходимости) */
     @media (max-width: 576px) {
-      /* Если нужно, можно добавить отдельные корректировки для промежуточного размера */
+      /* Пример: уменьшение размеров для устройств с шириной до 576px */
     }
     @media (max-width: 768px) {
-      /* Дополнительные корректировки для планшетов */
+      /* Пример: корректировки для устройств с шириной до 768px */
     }
     @media (max-width: 992px) {
-      /* Корректировки для устройств с шириной 992px и ниже */
+      /* Пример: корректировки для устройств с шириной до 992px */
     }
     @media (max-width: 1200px) {
-      /* Корректировки для устройств с шириной 1200px и ниже */
+      /* Пример: корректировки для устройств с шириной до 1200px */
     }
     @media (max-width: 1920px) {
       /* Для больших экранов базовые стили остаются */
