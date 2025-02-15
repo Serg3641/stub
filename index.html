@@ -186,6 +186,11 @@
       flex-direction: column;
       gap: 10px;
     }
+    /* Обнуляем возможное центрирование для родительских контейнеров */
+    .intro-right,
+    .bottom-info {
+      text-align: left; /* Выравниваем текст по левому краю */
+    }
     /* Для десктопа разделяем содержимое правой части на два блока */
     .top-info,
     .bottom-info {
@@ -342,6 +347,14 @@
       .contacts { flex-direction: column; align-items: center; margin-right: 0; gap: 10px; }
       .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
       .app-download { font-size: 22px; }
+    }
+    /* Явно выравниваем заголовок на десктопе */
+    @media (min-width: 601px) {
+      .bottom-info h1 {
+        text-align: left !important; /* Переопределяем центрирование */
+        margin-left: calc(2 * var(--base-spacing)) !important; /* Возвращаем отступ слева */
+        margin-right: auto !important; /* Убираем правый отступ */
+      }
     }
     /* Мобильные правки для экранов до 600px */
     @media (max-width: 600px) {
