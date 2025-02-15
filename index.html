@@ -22,19 +22,16 @@
       --transition-speed: 0.3s;
       --base-spacing: 40px;
     }
-    /* Используем min-height вместо height, чтобы страница могла расширяться и футер не перекрывал контент */
     html, body {
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
     }
-    /* Для сенсорных устройств (pointer: coarse) разрешаем горизонтальную прокрутку */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
       }
     }
-    /* Дополнительный медиа-запрос для экранов до 600px (обычно смартфоны) */
     @media (max-width: 600px) {
       .logo-title,
       .contacts .info {
@@ -63,14 +60,10 @@
       margin: 0 auto;
       padding: 0 15px;
     }
-    /* =============================== */
-    /* АНИМАЦИЯ ПРИ ПОДЪЕМЕ СТРАНИЦЫ */
-    /* =============================== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
     /* =============================== */
     /* ШАПКА САЙТА */
     /* =============================== */
@@ -145,7 +138,6 @@
     .contacts .phones a img {
       height: 18px;
     }
-    
     /* =============================== */
     /* ОСНОВНОЕ СОДЕРЖИМОЕ */
     /* =============================== */
@@ -165,6 +157,9 @@
     .content {
       flex: 1;
     }
+    /* =============================== */
+    /* Секция "intro" */
+    /* =============================== */
     .intro {
       display: flex;
       gap: 20px;
@@ -180,39 +175,40 @@
       flex-direction: column;
       gap: 10px;
     }
-    .intro-right h1 {
-      margin: 0;
-      color: var(--link-color);
-      /* Исходно текст с отступом – для десктопа */
-      margin-left: calc(2 * var(--base-spacing));
-      font-size: 24px;
-      transition: color var(--transition-speed);
+    /* Разбиваем содержимое правой части на два блока:
+       .top-info – для предупреждения, которое будет справа от робота,
+       .bottom-info – для остальной информации (под роботом) */
+    .top-info,
+    .bottom-info {
+      width: 100%;
     }
     .warning {
       color: var(--warning-color);
       margin-top: 30px;
-      font-size: 22px;
       margin-left: calc(2 * var(--base-spacing));
+      font-size: 22px;
     }
-    .info-payment {
+    .bottom-info h1 {
+      margin-left: calc(2 * var(--base-spacing));
+      color: var(--link-color);
+      font-size: 24px;
+      transition: color var(--transition-speed);
+    }
+    .bottom-info .info-payment {
       color: var(--link-color);
       font-size: 14px;
       margin-top: 30px;
       margin-left: calc(2 * var(--base-spacing));
     }
-    .info-payment a {
+    .bottom-info .info-payment a {
       display: inline-block;
       color: var(--link-color);
       text-decoration: underline;
       transition: color var(--transition-speed), transform var(--transition-speed);
     }
-    .info-payment a:hover {
+    .bottom-info .info-payment a:hover {
       transform: translateY(-5px);
     }
-    
-    /* =============================== */
-    /* БЛОК QR-КОДА */
-    /* =============================== */
     .qr-payment {
       display: flex;
       align-items: center;
@@ -251,10 +247,6 @@
       margin: 0;
       padding: 0;
     }
-    
-    /* =============================== */
-    /* БЛОК ИКОНОК ПРИЛОЖЕНИЙ */
-    /* =============================== */
     .payment-options {
       display: flex;
       gap: 30px;
@@ -269,9 +261,8 @@
     .payment-options img {
       height: 40px;
     }
-    
     /* =============================== */
-    /* НИЖНЯЯ ЧАСТЬ САЙТА */
+    /* Нижняя часть сайта */
     /* =============================== */
     .app-download {
       background: var(--primary);
@@ -296,7 +287,6 @@
       margin-top: 30px;
       transition: transform var(--transition-speed);
     }
-    
     /* =============================== */
     /* HOVER ЭФФЕКТЫ */
     /* =============================== */
@@ -311,7 +301,6 @@
     .app-download a:hover {
       transform: translateY(-10px);
     }
-    
     /* =============================== */
     /* АДАПТИВНЫЕ СТИЛИ */
     /* =============================== */
@@ -329,26 +318,46 @@
     }
     /* Мобильные правки (макс. ширина 600px) */
     @media (max-width: 600px) {
-      /* Сдвигаем номера телефонов влево */
-      .contacts .phones {
-        margin-left: -10px;
-      }
-      /* Для мобильной версии оставляем исходное горизонтальное расположение (то есть текст справа от робота) */
-      /* Сбрасываем левый отступ у текстовых блоков, чтобы они выравнивались по левому краю */
-      .intro-right h1,
-      .warning,
-      .info-payment,
-      .payment-options {
-        margin-left: 0;
-        text-align: left;
-      }
       /* Уменьшаем изображение робота */
       .intro-left img {
         width: 100px;
       }
-      /* Скрываем блок с QR-кодом и зелёным фоном */
-      .qr-payment {
-        display: none;
+      /* Организуем содержимое секции .intro как два ряда:
+         - Первый ряд: робот (левая колонка) и блок .top-info (справа от робота) */
+      .intro {
+        flex-wrap: wrap;
+      }
+      .intro-left {
+        width: 40%;
+      }
+      .intro-right {
+        width: 60%;
+        padding: 0 10px;
+      }
+      /* В правой колонке для мобильных:
+         - .top-info – отображает только предупреждение */
+      .top-info {
+        display: block;
+      }
+      .top-info .warning {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      /* Переносим остальную информацию (блок .bottom-info) на следующий ряд */
+      .bottom-info {
+        width: 100%;
+        margin-top: 10px;
+      }
+      .bottom-info h1,
+      .bottom-info .info-payment,
+      .qr-payment,
+      .payment-options {
+        margin-left: 0;
+        text-align: left;
+      }
+      .bottom-info h1 {
+        font-size: 20px;
       }
     }
   </style>
@@ -398,37 +407,40 @@
             <img src="images/robot.png" alt="Робот">
           </div>
           <div class="intro-right">
-            <!-- Здесь текст, который будет располагаться справа от робота -->
-            <h1>Уважаемый абонент!</h1>
-            <div class="warning">
-              <p>Доступ к услугам Интернет приостановлен</p>
-              <p>в связи с недостатком денежных средств</p>
-              <p>на лицевом счете</p>
-            </div>
-            <div class="info-payment">
-              <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
-              <p>MasterCard, Мир или СБП.</p>
-            </div>
-            <!-- Блок QR-кода и иконок (на мобильных скрывается) -->
-            <div class="qr-payment">
-              <div class="qr-left">
-                <img src="images/qr-code.png" alt="QR код">
-              </div>
-              <div class="qr-right">
-                <p>Отсканировав QR код,</p>
-                <p>вы перейдете на оплату</p>
-                <p>без входа в личный кабинет</p>
-                <p>в СбербанкОнлайн.</p>
+            <!-- Блок, который будет справа от робота на мобильных (содержит предупреждение) -->
+            <div class="top-info">
+              <div class="warning">
+                <p>Доступ к услугам Интернет приостановлен</p>
+                <p>в связи с недостатком денежных средств</p>
+                <p>на лицевом счете</p>
               </div>
             </div>
-            <!-- Блок иконок магазинов -->
-            <div class="payment-options">
-              <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
-                <img src="icons/sberbank-icon.png" alt="Сбербанк">
-              </a>
-              <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
-                <img src="icons/ckassa-icon.png" alt="Центральная касса">
-              </a>
+            <!-- Остальная информация, которая будет отображаться под роботом -->
+            <div class="bottom-info">
+              <h1>Уважаемый абонент!</h1>
+              <div class="info-payment">
+                <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
+                <p>MasterCard, Мир или СБП.</p>
+              </div>
+              <div class="qr-payment">
+                <div class="qr-left">
+                  <img src="images/qr-code.png" alt="QR код">
+                </div>
+                <div class="qr-right">
+                  <p>Отсканировав QR код,</p>
+                  <p>вы перейдете на оплату</p>
+                  <p>без входа в личный кабинет</p>
+                  <p>в СбербанкОнлайн.</p>
+                </div>
+              </div>
+              <div class="payment-options">
+                <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
+                  <img src="icons/sberbank-icon.png" alt="Сбербанк">
+                </a>
+                <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
+                  <img src="icons/ckassa-icon.png" alt="Центральная касса">
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -438,7 +450,6 @@
   <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
   <div class="app-download">
     <p>Скачивайте наше приложение</p>
-    <!-- Ссылки на магазины объединены без пробелов -->
     <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
       <img src="icons/google-icon.png" alt="Google Play">
     </a>
