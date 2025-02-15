@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <!-- Добавлен параметр user-scalable для разрешения масштабирования -->
+  <!-- Разрешаем масштабирование для сенсорных устройств -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Интерсити - Доступ приостановлен</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +29,15 @@
       /* По умолчанию скрываем горизонтальную прокрутку */
       overflow-x: hidden;
     }
-    /* На устройствах с сенсорным экраном разрешаем горизонтальную прокрутку */
+    /* На устройствах с сенсорным экраном разрешаем горизонтальную прокрутку 
+       и скрываем указанные элементы */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
+      }
+      .logo-title,
+      .contacts .info {
+        display: none;
       }
     }
     body {
@@ -98,6 +103,7 @@
       margin-right: 80px;
       transition: transform var(--transition-speed);
     }
+    /* Текст логотипа – скрывается для сенсорных устройств */
     .logo-title {
       font-size: 14px;
       color: #000;
@@ -113,6 +119,7 @@
       gap: 5px;
       margin-left: calc(-1 * var(--base-spacing));
     }
+    /* Блок с информацией о режиме работы – скрывается для сенсорных устройств */
     .contacts .info {
       font-size: 14px;
       margin-left: 0;
@@ -347,7 +354,7 @@
         <!-- Контакты -->
         <div class="contacts">
           <div class="contact-info">
-            <!-- Информация о режиме работы -->
+            <!-- Информация о режиме работы (скрывается для сенсорных устройств) -->
             <div class="info">
               <div>Вам ответят с 8.00 до 20.00</div>
               <div>без выходных</div>
