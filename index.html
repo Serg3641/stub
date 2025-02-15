@@ -2,437 +2,304 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <!-- Разрешаем масштабирование для сенсорных устройств -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Интерсити - Доступ приостановлен</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
-    /* =============================== */
-    /* ГЛОБАЛЬНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ */
-    /* =============================== */
-    :root {
-      --primary: #66c02e;
-      --secondary: #76AC00;
-      --text-color: #333;
-      --link-color: #003399;
-      --warning-color: red;
-      --font-main: 'Exo 2', sans-serif;
-      --transition-speed: 0.3s;
-      --base-spacing: 40px;
-    }
-    /* Используем min-height вместо height, чтобы страница могла расширяться и футер не перекрывал контент */
-    html, body {
-      min-height: 100vh;
-      margin: 0;
-      overflow-x: hidden;
-    }
-    /* Для сенсорных устройств (pointer: coarse) разрешаем горизонтальную прокрутку */
-    @media (hover: none) and (pointer: coarse) {
-      html, body {
-        overflow-x: auto;
-      }
-    }
-    /* На экранах до 600px скрываем текст логотипа, блок QR-кода и информацию о режиме работы */
-    @media (max-width: 600px) {
-      .logo-title,
-      .qr-payment,
-      .contacts .info {
-        display: none !important;
-      }
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      color: var(--text-color);
-      font-size: 14px;
-      font-family: var(--font-main);
-      line-height: 1.3;
-      background-color: #ffffff;
-      position: relative;
-      animation: fadeIn 0.8s ease-out;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    .container {
-      max-width: 880px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    /* =============================== */
-    /* АНИМАЦИЯ ПОДЪЁМА СТРАНИЦЫ */
-    /* =============================== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* =============================== */
-    /* ШАПКА САЙТА */
-    /* =============================== */
-    .header-bar {
-      background-color: var(--primary);
-      height: 25px;
-      width: 100%;
-    }
-    .header {
-      background: #fff;
-      border-top: 3px solid var(--secondary);
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      padding: 15px 30px;
-      margin-bottom: 10px;
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      transition: transform var(--transition-speed);
-    }
-    .logo a {
-      text-decoration: none;
-    }
-    .logo img {
-      height: 50px;
-      margin-right: 80px;
-      transition: transform var(--transition-speed);
-    }
-    .logo-title {
-      font-size: 14px;
-      color: #000;
-    }
-    .contacts {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-left: calc(-1 * var(--base-spacing));
-    }
-    .contacts .info {
-      font-size: 14px;
-      margin-left: 0;
-    }
-    .contacts .phones {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .contacts .phones a {
-      display: flex;
-      align-items: flex-start;
-      gap: 5px;
-      font-weight: 600;
-      color: #000;
-      font-size: 18.5px !important;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color var(--transition-speed);
-    }
-    .contacts .phones a:hover {
-      color: var(--link-color);
-    }
-    .contacts .phones a img {
-      height: 18px;
-    }
-    
-    /* =============================== */
-    /* ОСНОВНОЕ СОДЕРЖИМОЕ */
-    /* =============================== */
-    .main-content {
-      flex: 1;
-      margin-top: 20px;
-      padding: 20px 0 40px;
-      overflow: hidden;
-    }
-    .main-content .container {
-      display: flex;
-      gap: 20px;
-    }
-    .sidebar {
-      display: none;
-    }
-    .content {
-      flex: 1;
-    }
-    
-    /* =============================== */
-    /* Секция "intro" */
-    /* =============================== */
-    .intro {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-    .intro-left img {
-      width: 300px;
-      transition: transform var(--transition-speed);
-    }
-    .intro-right {
-      flex: 1;
-      /* В десктопе оставляем обычное блочное расположение */
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    /* Обнуляем возможное центрирование для родительских контейнеров */
-    .intro-right,
-    .bottom-info {
-      text-align: left !important; /* Выравниваем текст по левому краю */
-    }
-    /* Для десктопа разделяем содержимое правой части на два блока */
-    .top-info,
-    .bottom-info {
-      width: 100%;
-    }
-    .warning {
-      color: var(--warning-color);
-      margin-top: 30px;
-      margin-left: calc(2 * var(--base-spacing));
-      font-size: 22px;
-    }
-    .bottom-info h1 {
-      margin-left: calc(2 * var(--base-spacing));
-      color: var(--link-color);
-      font-size: 24px;
-      text-align: left !important;
-      width: 100%;
-      display: block;
-    }
-    .bottom-info {
-      color: var(--link-color);
-      font-size: 14px;
-      margin-top: 30px;
-      margin-left: calc(2 * var(--base-spacing));
-      text-align: left;
-    }
-    .bottom-info a {
-      display: inline-block;
-      color: var(--link-color);
-      text-decoration: underline;
-      transition: color var(--transition-speed), transform var(--transition-speed);
-    }
-    .bottom-info a:hover {
-      transform: translateY(-5px);
-    }
-    .info-payment {
-      color: var(--link-color);
-      font-size: 14px;
-      margin-top: 30px;
-      margin-left: calc(2 * var(--base-spacing));
-    }
-    .info-payment a {
-      display: inline-block;
-      color: var(--link-color);
-      text-decoration: underline;
-      transition: color var(--transition-speed), transform var(--transition-speed);
-    }
-    .info-payment a:hover {
-      transform: translateY(-5px);
-    }
-    .qr-payment {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-top: 10px;
-      margin-left: calc(2 * var(--base-spacing));
-    }
-    .qr-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-    }
-    .qr-left img {
-      display: block;
-      margin: 0;
-      transition: transform var(--transition-speed);
-    }
-    .qr-left img:hover {
-      transform: scale(1.15);
-    }
-    .qr-left img:first-of-type {
-      margin-left: -20px;
-    }
-    .qr-right {
-      background-color: var(--primary);
-      color: #fff;
-      padding: 10px;
-      line-height: 1.4;
-      border-radius: 4px;
-      transition: background-color var(--transition-speed);
-    }
-    .qr-right p {
-      margin: 0;
-      padding: 0;
-    }
-    .payment-options {
-      display: flex;
-      gap: 30px;
-      margin-top: 30px;
-      margin-left: calc(2 * var(--base-spacing));
-    }
-    .payment-options a.sberbank,
-    .payment-options a.ckassa {
-      text-decoration: none;
-      transition: transform var(--transition-speed);
-    }
-    .payment-options img {
-      height: 40px;
-    }
-    
-    /* =============================== */
-    /* Нижняя часть сайта */
-    /* =============================== */
-    .app-download {
-      background: var(--primary);
-      font-family: var(--font-main);
-      font-weight: bold;
-      color: white;
-      text-align: center;
-      font-size: 22px;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
-    .app-download p {
-      margin: 0 0 10px;
-    }
-    .app-download a {
-      font-size: 0;
-    }
-    .app-download a img {
-      height: 40px;
-      margin: 5px;
-      margin-top: 30px;
-      transition: transform var(--transition-speed);
-    }
-    
-    /* =============================== */
-    /* HOVER ЭФФЕКТЫ */
-    /* =============================== */
-    a:hover {
-      opacity: 0.9;
-    }
-    .logo:hover img,
-    .intro-left img:hover {
-      transform: scale(1.10);
-    }
-    .payment-options a:hover,
-    .app-download a:hover {
-      transform: translateY(-10px);
-    }
-    
-    /* =============================== */
-    /* АДАПТИВНЫЕ СТИЛИ */
-    /* =============================== */
-    @media (max-width: 1200px) {
-      .logo { margin-left: 50px; }
-      .logo-title { margin-left: 10px; }
-      .contacts { margin-right: 50px; }
-    }
-    @media (max-width: 768px) {
-      .header { flex-direction: column; align-items: center; padding: 10px; }
-      .logo { margin-left: 0; margin-bottom: 10px; }
-      .contacts { flex-direction: column; align-items: center; margin-right: 0; gap: 10px; }
-      .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
-      .app-download { font-size: 22px; }
-    }
-    /* Явно выравниваем заголовок на десктопе */
-    @media (min-width: 601px) {
-      .bottom-info h1 {
-        text-align: left !important;
-        margin-left: calc(2 * var(--base-spacing)) !important;
-        margin-right: auto !important;
-        display: block; /* Убедимся, что не влияет flex или inline свойства */
-        width: 100%; /* Дадим элементу полную ширину */
-      }
-    }
+/* =============================== */
+/* ГЛОБАЛЬНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ */
+/* =============================== */
+:root {
+  --primary: #66c02e;
+  --secondary: #76AC00;
+  --text-color: #333;
+  --link-color: #003399;
+  --warning-color: red;
+  --font-main: 'Exo 2', sans-serif;
+  --transition-speed: 0.3s;
+  --base-spacing: 40px;
+}
 
-    /* Мобильные правки для экранов до 600px */
-    @media (max-width: 600px) {
-      /* Уменьшаем изображение робота */
-      .intro-left img {
-        width: 120px;
-      }
-      /* Сдвигаем номера телефонов влево */
-      .contacts .phones {
-        margin-left: -10px;
-      }
-      /* Перестраиваем секцию .intro с помощью CSS grid:
-         - Первая строка: левая ячейка (40%) – робот (.intro-left);
-                        правая ячейка (60%) – блок с предупреждением (.top-info)
-         - Вторая строка: блок с остальной информацией (.bottom-info), растянутый на всю ширину */
-      .intro {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        grid-template-rows: auto auto;
-        grid-template-areas: 
-          "robot warning"
-          "bottom bottom";
-        gap: 10px;
-      }
-      .intro-left {
-        grid-area: robot;
-      }
-      /* Делаем так, чтобы содержимое правой части не оборачивалось дополнительным контейнером */
-      .intro-right {
-        display: contents;
-      }
-      .top-info {
-        grid-area: warning;
-        margin: 0 !important;
-        text-align: left;
-        font-size: 16px;
-        line-height: 1.2;
-      }
-      .top-info .warning {
-        font-size: 20px;
-        margin: 0 !important;
-      }
-      .bottom-info {
-        grid-area: bottom;
-        width: 100%;
-        margin-top: 10px;
-      }
-      /* Центрируем только заголовок "Уважаемый абонент!" */
-      .bottom-info h1 {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        text-align: center !important;
-      }
-      .bottom-info {
-        margin-left: 0 !important;
-        text-align: left !important;
-      }
-      .info-payment,
-      .qr-payment {
-        margin-left: 0 !important;
-        text-align: left !important;
-      }
-      /* Центрируем блок с иконками и задаём увеличенный отступ сверху; сбрасываем margin-left */
-      .payment-options {
-        justify-content: center !important;
-        margin-top: 40px !important;
-        margin-left: 0 !important;
-      }
-      .payment-options img {
-        height: 30px !important;
-      }
-    }
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  background-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* =============================== */
+/* ШАПКА САЙТА */
+/* =============================== */
+.header-bar {
+  background-color: var(--primary);
+  height: 25px;
+  width: 100%;
+}
+
+.header {
+  background: #fff;
+  border-top: 3px solid var(--secondary);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 30px;
+  margin-bottom: 10px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Логотип и текст */
+.logo {
+  display: flex;
+  align-items: center; /* Выравниваем элементы по центру */
+  gap: 100px; /* Отступ между логотипом и текстом */
+}
+
+.logo img {
+  height: 50px;
+  transition: transform var(--transition-speed);
+}
+
+.logo-title {
+  font-size: 14px;
+  color: #000;
+}
+
+/* Контакты */
+.contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contacts .info {
+  font-size: 14px;
+  margin-left: 0;
+}
+
+.contacts .phones {
+  display: flex;
+  flex-direction: column; /* Размещаем телефоны вертикально */
+  align-items: flex-start; /* Выравниваем по левому краю */
+  gap: 5px; /* Добавляем отступ между номерами */
+}
+
+.contacts .phones a {
+  display: flex; /* Делаем ссылку flex-контейнером */
+  align-items: center; /* Выравниваем содержимое по центру */
+  gap: 5px; /* Добавляем небольшой отступ между иконкой и текстом */
+  font-weight: 600;
+  color: #000;
+  font-size: 18.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition-speed);
+}
+
+.contacts .phones a:hover {
+  color: var(--link-color);
+}
+
+/* =============================== */
+/* ОСНОВНОЕ СОДЕРЖИМОЕ */
+/* =============================== */
+.main-content {
+  flex: 1;
+  margin-top: 20px;
+  padding: 20px 0 40px;
+}
+
+.intro {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.intro-left img {
+  width: 300px;
+  transition: transform var(--transition-speed);
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Заголовок */
+.bottom-info h1 {
+  font-size: 24px;
+  color: var(--link-color);
+  margin-left: calc(2 * var(--base-spacing));
+}
+
+/* Предупреждение */
+.warning {
+  color: var(--warning-color);
+  font-size: 22px;
+  margin-top: 20px;
+  margin-left: calc(2 * var(--base-spacing));
+}
+
+/* Информация об оплате */
+.info-payment {
+  font-size: 14px;
+  color: var(--link-color);
+  margin-left: calc(2 * var(--base-spacing));
+}
+
+/* QR-код */
+.qr-payment {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+  margin-left: calc(2 * var(--base-spacing) - 15px); /* То же выравнивание, что и у .warning */
+}
+
+.qr-left img {
+  width: 150px;
+  transition: transform var(--transition-speed);
+}
+
+.qr-right {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Методы оплаты */
+.payment-options {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  margin-left: calc(2 * var(--base-spacing));
+}
+
+/* =============================== */
+/* АДАПТИВНЫЕ СТИЛИ */
+/* =============================== */
+@media (max-width: 600px) {
+  /* Скрываем информацию о режиме работы */
+  .contacts .info {
+    display: none;
+  }
+
+  /* Размещаем телефоны в колонку */
+  .contacts .phones {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Уменьшаем размер робота */
+  .intro-left img {
+    width: 120px;
+  }
+
+  /* Центрируем заголовок */
+  .bottom-info h1 {
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Центрируем остальной контент */
+  .warning,
+  .info-payment,
+  .qr-payment,
+  .payment-options {
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* На мобильных устройствах размещаем QR-код по центру */
+  .qr-payment {
+    flex-direction: column; /* Размещаем элементы вертикально */
+    align-items: center; /* Центрируем содержимое */
+    margin-left: 0 !important; /* Сбрасываем левый отступ */
+  }
+
+  /* Размещаем кнопки оплаты по центру */
+  .payment-options {
+    justify-content: center;
+  }
+}
+
+/* =============================== */
+/* НИЖНЯЯ ЧАСТЬ САЙТА */
+/* =============================== */
+.app-download {
+  background: var(--primary);
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 0; /* Убираем размер шрифта для удаления дефиса */
+}
+
+.app-download p {
+  margin-bottom: 20px; /* Отступ между текстом и иконками */
+  font-size: 22px; /* Возвращаем нормальный размер шрифта для текста */
+}
+
+.app-download a {
+  font-size: initial; /* Возвращаем нормальный размер шрифта для ссылок */
+}
+
+.app-download a img {
+  height: 40px;
+  margin: 5px;
+  transition: transform var(--transition-speed);
+}
+
+/* =============================== */
+/* ЭФФЕКТЫ */
+/* =============================== */
+a:hover {
+  opacity: 0.9;
+}
+
+.logo:hover img,
+.intro-left img:hover {
+  transform: scale(1.10);
+}
+
+.payment-options a:hover,
+.app-download a:hover {
+  transform: translateY(-10px);
+}
   </style>
 </head>
 <body>
@@ -470,10 +337,10 @@
       </div>
     </div>
   </div>
+
   <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
   <div class="main-content">
     <div class="container">
-      <!-- Контент (боковая панель удалена) -->
       <div class="content">
         <div class="intro">
           <div class="intro-left">
@@ -492,43 +359,39 @@
               </div>
             </div>
             <!-- Остальная информация, которая будет отображаться под роботом -->
-              <div class="info-payment">
-                <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
-                <p>MasterCard, Мир или СБП.</p>
+            <div class="info-payment">
+              <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
+              <p>MasterCard, Мир или СБП.</p>
+            </div>
+            <div class="qr-payment">
+              <div class="qr-left">
+                <img src="images/qr-code.png" alt="QR код">
               </div>
-              <div class="qr-payment">
-                <div class="qr-left">
-                  <img src="images/qr-code.png" alt="QR код">
-                </div>
-                <div class="qr-right">
-                  <p>Отсканировав QR код,</p>
-                  <p>вы перейдете на оплату</p>
-                  <p>без входа в личный кабинет</p>
-                  <p>в СбербанкОнлайн.</p>
-                </div>
+              <div class="qr-right">
+                <p>Отсканировав QR код,</p>
+                <p>вы перейдете на оплату</p>
+                <p>без входа в личный кабинет</p>
+                <p>в СбербанкОнлайн.</p>
               </div>
-              <div class="payment-options">
-                <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
-                  <img src="icons/sberbank-icon.png" alt="Сбербанк">
-                </a>
-                <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
-                  <img src="icons/ckassa-icon.png" alt="Центральная касса">
-                </a>
-              </div>
+            </div>
+            <div class="payment-options">
+              <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
+                <img src="icons/sberbank-icon.png" alt="Сбербанк">
+              </a>
+              <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
+                <img src="icons/ckassa-icon.png" alt="Центральная касса">
+              </a>
+            </div>
           </div><!-- .intro-right -->
         </div><!-- .intro -->
       </div>
     </div>
   </div>
-  <!-- Нижняя часть сайта -->
-  <div class="app-download">
-    <p>Скачивайте наше приложение</p>
-    <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
-      <img src="icons/google-icon.png" alt="Google Play">
-    </a>
-    <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
-      <img src="icons/apple-icon.png" alt="App Store">
-    </a>
-  </div>
+
+  <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
+<div class="app-download">
+  <p>Скачивайте наше приложение</p>
+  <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank"><img src="icons/google-icon.png" alt="Google Play"></a><a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank"><img src="icons/apple-icon.png" alt="App Store"></a>
+</div>
 </body>
 </html>
