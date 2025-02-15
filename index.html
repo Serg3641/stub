@@ -370,15 +370,21 @@
         width: 100%;
         margin-top: 10px;
       }
-      /* Сбрасываем отступы у остальных элементов в .bottom-info и центрируем текст */
+      /* Центрируем только заголовок "Уважаемый абонент!", остальной текст остаётся слева */
       .bottom-info h1 {
         margin-left: 0 !important;
         margin-right: 0 !important;
         text-align: center !important;
       }
+      .bottom-info .info-payment,
+      .qr-payment {
+        margin-left: 0 !important;
+        text-align: left !important;
+      }
+      /* Центрируем блок с иконками и задаём увеличенный отступ сверху */
       .payment-options {
         justify-content: center !important;
-        margin-top: 20px !important;
+        margin-top: 30px !important;
       }
     }
   </style>
@@ -468,7 +474,7 @@
       </div>
     </div>
   </div>
-  <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
+  <!-- Нижняя часть сайта -->
   <div class="app-download">
     <p>Скачивайте наше приложение</p>
     <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
