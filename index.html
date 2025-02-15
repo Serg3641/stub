@@ -28,13 +28,13 @@
       margin: 0;
       overflow-x: hidden;
     }
-    /* На устройствах с сенсорным экраном разрешаем горизонтальную прокрутку */
+    /* Для сенсорных устройств (pointer: coarse) разрешаем горизонтальную прокрутку */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
       }
     }
-    /* Для экранов до 600px (смартфоны): скрываем текст логотипа и информацию о режиме работы */
+    /* Дополнительный медиа-запрос для экранов до 600px (обычно смартфоны) */
     @media (max-width: 600px) {
       .logo-title,
       .contacts .info {
@@ -64,12 +64,13 @@
       padding: 0 15px;
     }
     /* =============================== */
-    /* АНИМАЦИЯ ПОДЪЁМА СТРАНИЦЫ */
+    /* АНИМАЦИЯ ПРИ ПОДЪЕМЕ СТРАНИЦЫ */
     /* =============================== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
     /* =============================== */
     /* ШАПКА САЙТА */
     /* =============================== */
@@ -144,6 +145,7 @@
     .contacts .phones a img {
       height: 18px;
     }
+    
     /* =============================== */
     /* ОСНОВНОЕ СОДЕРЖИМОЕ */
     /* =============================== */
@@ -206,7 +208,10 @@
     .info-payment a:hover {
       transform: translateY(-5px);
     }
-    /* Блок QR-кода */
+    
+    /* =============================== */
+    /* БЛОК QR-КОДА */
+    /* =============================== */
     .qr-payment {
       display: flex;
       align-items: center;
@@ -245,7 +250,10 @@
       margin: 0;
       padding: 0;
     }
-    /* Блок иконок приложений */
+    
+    /* =============================== */
+    /* БЛОК ИКОНОК ПРИЛОЖЕНИЙ */
+    /* =============================== */
     .payment-options {
       display: flex;
       gap: 30px;
@@ -260,12 +268,7 @@
     .payment-options img {
       height: 40px;
     }
-    /* Контейнер для QR-кода и иконок – для мобильной перестановки */
-    .qr-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    
     /* =============================== */
     /* НИЖНЯЯ ЧАСТЬ САЙТА */
     /* =============================== */
@@ -292,6 +295,7 @@
       margin-top: 30px;
       transition: transform var(--transition-speed);
     }
+    
     /* =============================== */
     /* HOVER ЭФФЕКТЫ */
     /* =============================== */
@@ -306,6 +310,7 @@
     .app-download a:hover {
       transform: translateY(-10px);
     }
+    
     /* =============================== */
     /* АДАПТИВНЫЕ СТИЛИ */
     /* =============================== */
@@ -321,57 +326,13 @@
       .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
       .app-download { font-size: 22px; }
     }
-    /* =============================== */
-    /* Мобильные стили (макс. ширина 600px) */
-    /* =============================== */
-    @media (max-width: 600px) {
-      /* 1. Сдвигаем номера телефонов влево */
-      .contacts .phones {
-        margin-left: -10px;
-      }
-      /* 2. Делаем контейнер с информацией о подписке вертикальным и убираем отступы слева у текстов */
-      .intro {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .intro-right h1,
-      .warning,
-      .info-payment,
-      .qr-payment,
-      .payment-options {
-        margin-left: 0;
-      }
-      /* 3. Переставляем блок с QR-кодом и иконками – помещаем его в отдельный контейнер с зелёной рамкой,
-             и с помощью order выводим его выше текстовых блоков внутри .intro-right */
-      .intro-right {
-        display: flex;
-        flex-direction: column;
-      }
-      .intro-right .qr-section {
-        order: -1;
-        width: 100%;
-        border: 2px solid var(--primary);
-        border-radius: 4px;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      /* Центрируем содержимое внутри QR-блока */
-      .qr-payment {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 0;
-      }
-      .qr-payment .qr-left,
-      .qr-payment .qr-right {
-        width: 100%;
-        text-align: center;
-        margin: 0;
-      }
-      .payment-options {
-        justify-content: center;
-        margin-top: 10px;
-      }
+    @media (max-width: 480px) {
+      .logo-title { font-size: 12px; }
+      .intro-left img { width: 150px; }
+      .intro-right h1 { font-size: 20px; }
+      .warning { font-size: 16px; }
+      .info-payment { font-size: 12px; }
+      .contacts .phones a { font-size: 16px; }
     }
   </style>
 </head>
@@ -420,29 +381,6 @@
             <img src="images/robot.png" alt="Робот">
           </div>
           <div class="intro-right">
-            <!-- Блок QR-кода и иконок, который на мобильных устройствах перемещается выше -->
-            <div class="qr-section">
-              <div class="qr-payment">
-                <div class="qr-left">
-                  <img src="images/qr-code.png" alt="QR код">
-                </div>
-                <div class="qr-right">
-                  <p>Отсканировав QR код,</p>
-                  <p>вы перейдете на оплату</p>
-                  <p>без входа в личный кабинет</p>
-                  <p>в СбербанкОнлайн.</p>
-                </div>
-              </div>
-              <div class="payment-options">
-                <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
-                  <img src="icons/sberbank-icon.png" alt="Сбербанк">
-                </a>
-                <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
-                  <img src="icons/ckassa-icon.png" alt="Центральная касса">
-                </a>
-              </div>
-            </div>
-            <!-- Текстовая информация -->
             <h1>Уважаемый абонент!</h1>
             <div class="warning">
               <p>Доступ к услугам Интернет приостановлен</p>
@@ -452,6 +390,27 @@
             <div class="info-payment">
               <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
               <p>MasterCard, Мир или СБП.</p>
+            </div>
+            <!-- Блок QR-кода -->
+            <div class="qr-payment">
+              <div class="qr-left">
+                <img src="images/qr-code.png" alt="QR код">
+              </div>
+              <div class="qr-right">
+                <p>Отсканировав QR код,</p>
+                <p>вы перейдете на оплату</p>
+                <p>без входа в личный кабинет</p>
+                <p>в СбербанкОнлайн.</p>
+              </div>
+            </div>
+            <!-- Блок иконок магазинов -->
+            <div class="payment-options">
+              <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
+                <img src="icons/sberbank-icon.png" alt="Сбербанк">
+              </a>
+              <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
+                <img src="icons/ckassa-icon.png" alt="Центральная касса">
+              </a>
             </div>
           </div>
         </div>
