@@ -351,11 +351,14 @@
     /* Явно выравниваем заголовок на десктопе */
     @media (min-width: 601px) {
       .bottom-info h1 {
-        text-align: left !important; /* Переопределяем центрирование */
-        margin-left: calc(2 * var(--base-spacing)) !important; /* Возвращаем отступ слева */
-        margin-right: auto !important; /* Убираем правый отступ */
+        text-align: left !important;
+        margin-left: calc(2 * var(--base-spacing)) !important;
+        margin-right: auto !important;
+        display: block; /* Убедимся, что не влияет flex или inline свойства */
+        width: 100%; /* Дадим элементу полную ширину */
       }
     }
+
     /* Мобильные правки для экранов до 600px */
     @media (max-width: 600px) {
       /* Уменьшаем изображение робота */
