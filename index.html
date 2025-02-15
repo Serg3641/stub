@@ -34,7 +34,7 @@
         overflow-x: auto;
       }
     }
-    /* На экранах до 600px скрываем текст логотипа и информацию о режиме работы */
+    /* На экранах до 600px скрываем текст логотипа, блок QR-кода и информацию о режиме работы */
     @media (max-width: 600px) {
       .logo-title,
       .qr-payment,
@@ -331,9 +331,6 @@
     /* Мобильные правки для экранов до 600px */
     @media (max-width: 600px) {
       /* Уменьшаем изображение робота */
-      .contacts .phones {
-        margin-left: -10px;
-      }
       .intro-left img {
         width: 120px;
       }
@@ -373,13 +370,15 @@
         width: 100%;
         margin-top: 10px;
       }
-      /* Сбрасываем отступы у остальных элементов в .bottom-info */
-      .bottom-info h1,
-      .bottom-info .info-payment,
-      .qr-payment,
-      .payment-options {
+      /* Сбрасываем отступы у остальных элементов в .bottom-info и центрируем текст */
+      .bottom-info h1 {
         margin-left: 0 !important;
-        text-align: left;
+        margin-right: 0 !important;
+        text-align: center !important;
+      }
+      .payment-options {
+        justify-content: center !important;
+        margin-top: 20px !important;
       }
     }
   </style>
