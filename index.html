@@ -23,7 +23,7 @@
       --base-spacing: 55px;
     }
     html, body {
-      min-height: 100vh;         /* Используем min-height вместо height */
+      min-height: 100vh;
       margin: 0;                 
       overflow-x: hidden;
     }
@@ -99,7 +99,6 @@
       align-items: center;
       gap: 20px;
     }
-    /* Контактный блок */
     .contact-info {
       display: flex;
       flex-direction: column;
@@ -109,12 +108,12 @@
     .contacts .info {
       font-size: 14px;
     }
-    .contacts .phones {
+    .phones {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
-    .contacts .phones a {
+    .phones a {
       display: flex;
       align-items: flex-start;
       gap: 5px;
@@ -125,10 +124,10 @@
       white-space: nowrap;
       transition: color var(--transition-speed);
     }
-    .contacts .phones a:hover {
+    .phones a:hover {
       color: var(--link-color);
     }
-    .contacts .phones a img {
+    .phones a img {
       height: 18px;
     }
     
@@ -139,7 +138,6 @@
       flex: 1;
       margin-top: 20px;
       padding: 20px 0 40px;
-      /* Убрано overflow: hidden, чтобы контент не обрезался */
     }
     .main-content .container {
       display: flex;
@@ -266,7 +264,7 @@
       text-align: center;
       font-size: 22px;
       padding: 20px;
-      margin-top: auto; /* Футер прижат к низу */
+      margin-top: auto;
     }
     .app-download p {
       margin: 0 0 10px;
@@ -297,58 +295,61 @@
     }
     
     /* =============================== */
-    /* АДАПТИВНЫЕ СТИЛИ */
+    /* АДАПТИВНЫЕ СТИЛИ ДЛЯ ЭКРАНА 376px */
     /* =============================== */
-    /* Для экранов 1920px и ниже */
-    @media (max-width: 1920px) {
-      /* базовые размеры */
-    }
-    /* Для экранов 1200px и ниже */
-    @media (max-width: 1200px) {
-      .logo { margin-left: 50px; }
-      .logo-title { margin-left: 10px; }
-      .contacts { margin-right: 50px; }
-    }
-    /* Для экранов 992px и ниже */
-    @media (max-width: 992px) {
-      .logo img { height: 45px; margin-right: 60px; }
-      .logo-title { font-size: 13px; }
-      .contacts .phones a { font-size: 17px !important; }
-      .intro-left img { width: 250px; }
-      .intro-right h1 { font-size: 22px; margin-left: calc(2 * var(--base-spacing) * 0.8); }
-      .warning { font-size: 20px; margin-left: calc(2 * var(--base-spacing) * 0.8); }
-      .info-payment { font-size: 13px; margin-left: calc(2 * var(--base-spacing) * 0.8); }
-      .qr-payment { margin-left: calc(2 * var(--base-spacing) * 0.8); }
-      .payment-options { margin-left: calc(2 * var(--base-spacing) * 0.8); }
-    }
-    /* Для экранов 768px и ниже */
-    @media (max-width: 768px) {
-      .header { flex-direction: column; align-items: center; padding: 10px; }
-      .logo { margin-left: 0; margin-bottom: 10px; }
-      .contacts { flex-direction: column; align-items: center; margin-right: 0; gap: 10px; }
-      .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
-      .app-download { font-size: 22px; }
-    }
-    /* Для экранов 576px и ниже */
-    @media (max-width: 576px) {
-      .intro-left img { width: 200px; }
-      .intro-right h1 { font-size: 20px; margin-left: calc(2 * var(--base-spacing) * 0.7); }
-      .warning { font-size: 18px; margin-left: calc(2 * var(--base-spacing) * 0.7); }
-      .info-payment { font-size: 12px; margin-left: calc(2 * var(--base-spacing) * 0.7); }
-      .qr-payment { margin-left: calc(2 * var(--base-spacing) * 0.7); }
-      .payment-options { margin-left: calc(2 * var(--base-spacing) * 0.7); }
-    }
-    /* Для экранов 376px и ниже */
     @media (max-width: 376px) {
-      .logo img { height: 40px; margin-right: 40px; }
-      .logo-title { font-size: 12px; }
-      .intro-left img { width: 150px; }
-      .intro-right h1 { font-size: 18px; margin-left: calc(2 * var(--base-spacing) * 0.6); }
-      .warning { font-size: 16px; margin-left: calc(2 * var(--base-spacing) * 0.6); }
-      .info-payment { font-size: 11px; margin-left: calc(2 * var(--base-spacing) * 0.6); }
-      .contacts .phones a { font-size: 15px !important; }
-      .qr-payment { margin-left: calc(2 * var(--base-spacing) * 0.6); }
-      .payment-options { margin-left: calc(2 * var(--base-spacing) * 0.6); }
+      /* 1. Скрываем текст "Интернет в дом и офис" */
+      .logo-title {
+        display: none;
+      }
+      /* 2. Перестраиваем блок контактов: номера телефонов перемещаем вверх и выравниваем по левому краю */
+      .contacts {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .phones {
+        order: 1;
+        margin-left: 0;
+      }
+      .contact-info {
+        order: 2;
+        margin-left: 0;
+      }
+      .contacts .info {
+        margin-top: 5px;
+        text-align: left;
+      }
+      /* 3. Уменьшаем изображение робота до 150px */
+      .intro-left img {
+        width: 150px;
+      }
+      /* 4. Сдвигаем весь контент справа от робота влево (убираем отступы) */
+      .intro-right {
+        margin-left: 0;
+      }
+      .intro-right h1,
+      .warning,
+      .info-payment {
+        margin-left: 0;
+      }
+    }
+    
+    /* Дополнительные media-запросы можно настроить по необходимости */
+    @media (max-width: 576px) {
+      /* Если нужно, можно добавить отдельные корректировки для промежуточного размера */
+    }
+    @media (max-width: 768px) {
+      /* Дополнительные корректировки для планшетов */
+    }
+    @media (max-width: 992px) {
+      /* Корректировки для устройств с шириной 992px и ниже */
+    }
+    @media (max-width: 1200px) {
+      /* Корректировки для устройств с шириной 1200px и ниже */
+    }
+    @media (max-width: 1920px) {
+      /* Для больших экранов базовые стили остаются */
     }
   </style>
 </head>
@@ -438,7 +439,8 @@
     <p>Скачивайте наше приложение</p>
     <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
       <img src="icons/google-icon.png" alt="Google Play">
-    </a><a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
+    </a>
+    <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
       <img src="icons/apple-icon.png" alt="App Store">
     </a>
   </div>
