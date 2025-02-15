@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <!-- Разрешаем масштабирование для сенсорных устройств -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Интерсити - Доступ приостановлен</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,19 +21,16 @@
       --transition-speed: 0.3s;
       --base-spacing: 40px;
     }
-    /* Используем min-height вместо height, чтобы страница могла расширяться и футер не перекрывал контент */
     html, body {
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
     }
-    /* Для сенсорных устройств (pointer: coarse) разрешаем горизонтальную прокрутку */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
       }
     }
-    /* На экранах до 600px скрываем текст логотипа, блок QR-кода и информацию о режиме работы */
     @media (max-width: 600px) {
       .logo-title,
       .qr-payment,
@@ -181,12 +177,10 @@
     }
     .intro-right {
       flex: 1;
-      /* В десктопе оставляем обычное блочное расположение */
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    /* Для десктопа разделяем содержимое правой части на два блока */
     .top-info,
     .bottom-info {
       width: 100%;
@@ -328,42 +322,27 @@
       .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
       .app-download { font-size: 22px; }
     }
-    /* Мобильные правки для экранов до 600px */
     @media (max-width: 600px) {
-      /* Уменьшаем изображение робота */
       .intro-left img {
         width: 120px;
       }
-      /* Сдвигаем номера телефонов влево */
       .contacts .phones {
         margin-left: -10px;
       }
-      /* Перестраиваем секцию .intro с помощью CSS grid:
-         - Первая строка: блок с приветствием (.greeting) на всю ширину;
-         - Вторая строка: левая ячейка (40%) – робот (.intro-left);
-                        правая ячейка (60%) – блок с предупреждением (.top-info)
-         - Третья строка: блок с остальной информацией (.rest-info), растянутый на всю ширину */
       .intro {
         display: grid;
         grid-template-columns: 40% 60%;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto;
         grid-template-areas: 
-          "greeting greeting"
           "robot warning"
-          "rest rest";
+          "bottom bottom";
         gap: 10px;
       }
       .intro-left {
         grid-area: robot;
       }
-      /* Делаем так, чтобы содержимое правой части не оборачивалось дополнительным контейнером */
       .intro-right {
         display: contents;
-      }
-      .greeting {
-        grid-area: greeting;
-        margin: 0 !important;
-        text-align: center !important;
       }
       .top-info {
         grid-area: warning;
@@ -376,31 +355,28 @@
         font-size: 20px;
         margin: 0 !important;
       }
-      .rest-info {
-        grid-area: rest;
+      .bottom-info {
+        grid-area: bottom;
         width: 100%;
         margin-top: 10px;
       }
-      /* Центрируем только заголовок "Уважаемый абонент!" */
-      .rest-info h1 {
+      .bottom-info h1 {
         margin-left: 0 !important;
         margin-right: 0 !important;
         text-align: center !important;
       }
-      .rest-info .info-payment,
+      .bottom-info .info-payment,
       .qr-payment {
         margin-left: 0 !important;
         text-align: left !important;
       }
-      /* Центрируем блок с иконками и задаём увеличенный отступ сверху; сбрасываем margin-left */
       .payment-options {
         justify-content: center !important;
-        margin-top: 40px !important;
+        margin-top: 60px !important;
         margin-left: 0 !important;
       }
-      /* Уменьшаем иконки сбербанка и центральной кассы до 20px по высоте */
       .payment-options img {
-        height: 30px !important;
+        height: 20px !important;
       }
     }
     
@@ -415,7 +391,6 @@
       flex-direction: column;
       gap: 10px;
       z-index: 10000;
-      /* Плавное появление и пульсация */
       animation: pulse 2s infinite;
     }
     #contact-widget a {
@@ -450,7 +425,6 @@
         <!-- Контакты -->
         <div class="contacts">
           <div class="contact-info">
-            <!-- Информация о режиме работы (скрывается на смартфонах) -->
             <div class="info">
               <div>Вам ответят с 8.00 до 20.00</div>
               <div>без выходных</div>
@@ -472,18 +446,12 @@
   <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
   <div class="main-content">
     <div class="container">
-      <!-- Контент (боковая панель удалена) -->
       <div class="content">
         <div class="intro">
           <div class="intro-left">
             <img src="images/robot.png" alt="Робот">
           </div>
           <div class="intro-right">
-            <!-- Новый блок с приветствием -->
-            <div class="greeting">
-              <h1>Уважаемый абонент!</h1>
-            </div>
-            <!-- Блок, который будет справа от робота на мобильных -->
             <div class="top-info">
               <div class="warning">
                 <p>Доступ к услугам Интернет приостановлен</p>
@@ -491,8 +459,8 @@
                 <p>на лицевом счете</p>
               </div>
             </div>
-            <!-- Остальная информация, которая будет отображаться под роботом -->
-            <div class="rest-info">
+            <div class="bottom-info">
+              <h1>Уважаемый абонент!</h1>
               <div class="info-payment">
                 <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
                 <p>MasterCard, Мир или СБП.</p>
@@ -517,8 +485,8 @@
                 </a>
               </div>
             </div>
-          </div><!-- .intro-right -->
-        </div><!-- .intro -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
