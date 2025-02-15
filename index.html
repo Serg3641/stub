@@ -22,16 +22,19 @@
       --transition-speed: 0.3s;
       --base-spacing: 40px;
     }
+    /* Используем min-height вместо height, чтобы страница могла расширяться и футер не перекрывал контент */
     html, body {
       min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
     }
+    /* Для сенсорных устройств (pointer: coarse) разрешаем горизонтальную прокрутку */
     @media (hover: none) and (pointer: coarse) {
       html, body {
         overflow-x: auto;
       }
     }
+    /* На экранах до 600px скрываем текст логотипа и информацию о режиме работы */
     @media (max-width: 600px) {
       .logo-title,
       .contacts .info {
@@ -60,10 +63,14 @@
       margin: 0 auto;
       padding: 0 15px;
     }
+    /* =============================== */
+    /* АНИМАЦИЯ ПОДЪЁМА СТРАНИЦЫ */
+    /* =============================== */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
     /* =============================== */
     /* ШАПКА САЙТА */
     /* =============================== */
@@ -138,6 +145,7 @@
     .contacts .phones a img {
       height: 18px;
     }
+    
     /* =============================== */
     /* ОСНОВНОЕ СОДЕРЖИМОЕ */
     /* =============================== */
@@ -157,6 +165,7 @@
     .content {
       flex: 1;
     }
+    
     /* =============================== */
     /* Секция "intro" */
     /* =============================== */
@@ -171,13 +180,12 @@
     }
     .intro-right {
       flex: 1;
+      /* В десктопе оставляем обычное блочное расположение */
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    /* Разбиваем содержимое правой части на два блока:
-       .top-info – для предупреждения, которое будет справа от робота,
-       .bottom-info – для остальной информации (под роботом) */
+    /* В десктопе содержимое .intro-right выводится как есть */
     .top-info,
     .bottom-info {
       width: 100%;
@@ -261,6 +269,7 @@
     .payment-options img {
       height: 40px;
     }
+    
     /* =============================== */
     /* Нижняя часть сайта */
     /* =============================== */
@@ -287,6 +296,7 @@
       margin-top: 30px;
       transition: transform var(--transition-speed);
     }
+    
     /* =============================== */
     /* HOVER ЭФФЕКТЫ */
     /* =============================== */
@@ -301,6 +311,7 @@
     .app-download a:hover {
       transform: translateY(-10px);
     }
+    
     /* =============================== */
     /* АДАПТИВНЫЕ СТИЛИ */
     /* =============================== */
@@ -316,48 +327,43 @@
       .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
       .app-download { font-size: 22px; }
     }
-    /* Мобильные правки (макс. ширина 600px) */
+    /* Мобильные правки для экранов до 600px */
     @media (max-width: 600px) {
       /* Уменьшаем изображение робота */
       .intro-left img {
         width: 100px;
       }
-      /* Организуем содержимое секции .intro как два ряда:
-         - Первый ряд: робот (левая колонка) и блок .top-info (справа от робота) */
+      /* Перестраиваем секцию .intro с помощью CSS grid:
+         - левая ячейка (40%) – робот (.intro-left)
+         - правая ячейка (60%) – предупреждение (.top-info)
+         - вторая строка – остальная информация (.bottom-info), растянутая на всю ширину */
       .intro {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+          "robot warning"
+          "bottom bottom";
+        gap: 10px;
       }
       .intro-left {
-        width: 40%;
+        grid-area: robot;
       }
+      /* Делаем так, чтобы содержимое блока .intro-right не создавало дополнительный контейнер */
       .intro-right {
-        width: 60%;
-        padding: 0 10px;
+        display: contents;
       }
-      /* В правой колонке для мобильных:
-         - .top-info – отображает только предупреждение */
       .top-info {
-        display: block;
-      }
-      .top-info .warning {
+        grid-area: warning;
+        /* Выравниваем текст по левому краю без отступов */
         margin: 0;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 1.2;
       }
-      /* Переносим остальную информацию (блок .bottom-info) на следующий ряд */
       .bottom-info {
+        grid-area: bottom;
         width: 100%;
         margin-top: 10px;
-      }
-      .bottom-info h1,
-      .bottom-info .info-payment,
-      .qr-payment,
-      .payment-options {
-        margin-left: 0;
-        text-align: left;
-      }
-      .bottom-info h1 {
-        font-size: 20px;
       }
     }
   </style>
@@ -407,7 +413,7 @@
             <img src="images/robot.png" alt="Робот">
           </div>
           <div class="intro-right">
-            <!-- Блок, который будет справа от робота на мобильных (содержит предупреждение) -->
+            <!-- Блок, который будет справа от робота на мобильных -->
             <div class="top-info">
               <div class="warning">
                 <p>Доступ к услугам Интернет приостановлен</p>
@@ -442,8 +448,8 @@
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+          </div><!-- .intro-right -->
+        </div><!-- .intro -->
       </div>
     </div>
   </div>
