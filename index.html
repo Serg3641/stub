@@ -339,18 +339,16 @@
         margin-left: -10px;
       }
       /* Перестраиваем секцию .intro с помощью CSS grid:
-         - Первая строка: блок с приветствием (.greeting) на всю ширину;
-         - Вторая строка: левая ячейка (40%) – робот (.intro-left);
+         - Первая строка: левая ячейка (40%) – робот (.intro-left);
                         правая ячейка (60%) – блок с предупреждением (.top-info)
-         - Третья строка: блок с остальной информацией (.rest-info), растянутый на всю ширину */
+         - Вторая строка: блок с остальной информацией (.bottom-info), растянутый на всю ширину */
       .intro {
         display: grid;
         grid-template-columns: 40% 60%;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto;
         grid-template-areas: 
-          "greeting greeting"
           "robot warning"
-          "rest rest";
+          "bottom bottom";
         gap: 10px;
       }
       .intro-left {
@@ -359,11 +357,6 @@
       /* Делаем так, чтобы содержимое правой части не оборачивалось дополнительным контейнером */
       .intro-right {
         display: contents;
-      }
-      .greeting {
-        grid-area: greeting;
-        margin: 0 !important;
-        text-align: center !important;
       }
       .top-info {
         grid-area: warning;
@@ -376,18 +369,18 @@
         font-size: 20px;
         margin: 0 !important;
       }
-      .rest-info {
-        grid-area: rest;
+      .bottom-info {
+        grid-area: bottom;
         width: 100%;
         margin-top: 10px;
       }
       /* Центрируем только заголовок "Уважаемый абонент!" */
-      .rest-info h1 {
+      .bottom-info h1 {
         margin-left: 0 !important;
         margin-right: 0 !important;
         text-align: center !important;
       }
-      .rest-info .info-payment,
+      .bottom-info .info-payment,
       .qr-payment {
         margin-left: 0 !important;
         text-align: left !important;
@@ -399,69 +392,12 @@
         margin-left: 0 !important;
       }
       .payment-options img {
-        height: 20px !important;
+        height: 30px !important;
       }
     }
-    
-    /* =============================== */
-    /* Виджет для WhatsApp и Telegram (только для мобильных) */
-    /* =============================== */
-    @media (max-width: 600px) {
-      #contact-widget {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 10000;
-        /* Плавная пульсация */
-        animation: pulse 2s infinite;
-      }
-      #contact-widget a {
-        display: block;
-      }
-      #contact-widget img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    /* =============================== */
-    /* Новое правило для подъёма заголовка "Уважаемый абонент!" (только для мобильных) */
-    @media (max-width: 600px) {
-      .greeting {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        z-index: 2000;
-        background: #ffffff;
-        padding: 10px 0;
-      }
-      .greeting h1 {
-        color: var(--link-color);
-      }
-      /* Добавляем отступ сверху для шапки, чтобы она не перекрывала заголовок */
-      .header {
-        margin-top: 60px;
-      }
-    }
-    
   </style>
 </head>
 <body>
-  <!-- Заголовок "Уважаемый абонент!" для мобильных устройств будет отображаться фиксированно сверху -->
-  <!-- (Остальной код десктопной версии остается без изменений) -->
-  
   <!-- ШАПКА САЙТА -->
   <div class="header-bar"></div>
   <div class="header">
@@ -554,16 +490,6 @@
     </a>
     <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
       <img src="icons/apple-icon.png" alt="App Store">
-    </a>
-  </div>
-  
-  <!-- Виджет для WhatsApp и Telegram (только для мобильных) -->
-  <div id="contact-widget">
-    <a href="https://wa.me/79997001010" target="_blank">
-      <img src="icons/whatsapp-icon.png" alt="WhatsApp">
-    </a>
-    <a href="https://t.me/+79997001010" target="_blank">
-      <img src="icons/telegram-icon.png" alt="Telegram">
     </a>
   </div>
 </body>
