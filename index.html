@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Интерсити - Доступ приостановлен</title>
+  <!-- Подключение шрифтов с Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -20,10 +21,11 @@
       --font-main: 'Exo 2', sans-serif;
       --transition-speed: 0.3s;
       --base-spacing: 40px;
+      --scale-factor: 0.8; /* Коэффициент масштабирования для всех экранов */
     }
     html, body {
       min-height: 100vh;
-      margin: 0;
+      margin: 0;                 
       overflow-x: hidden;
     }
     body {
@@ -44,7 +46,10 @@
     }
     /* Обёртка для масштабирования всей страницы */
     .scale-container {
-      width: 100%;
+      transform: scale(var(--scale-factor));
+      transform-origin: top left;
+      /* Ширина увеличена для компенсации масштабирования */
+      width: calc(100% / var(--scale-factor));
     }
     .container {
       max-width: 880px;
@@ -299,14 +304,14 @@
     }
     
     /* =============================== */
-    /* АДАПТИВНЫЕ СТИЛИ ДЛЯ ЭКРАНА 376px */
+    /* АДАПТИВНЫЕ СТИЛИ ДЛЯ ЭКРАНА 376px И ВСЕХ МАЛЫХ УСТРОЙСТВ */
     /* =============================== */
     @media (max-width: 376px) {
-      /* 1. Скрываем текст "Интернет в дом и офис" */
+      /* Скрываем текст "Интернет в дом и офис" */
       .logo-title {
         display: none;
       }
-      /* 2. Перестраиваем блок контактов: номера телефонов выводим первыми, выравниваем по левому краю */
+      /* Перестраиваем блок контактов: номера телефонов выводим первыми, затем информация */
       .contacts {
         flex-direction: column;
         align-items: flex-start;
@@ -316,7 +321,6 @@
         order: 1;
         margin-left: 0;
       }
-      /* 3. Информация о режиме работы сразу под номерами */
       .contact-info {
         order: 2;
         margin-left: 0;
@@ -325,11 +329,11 @@
       .contacts .info {
         text-align: left;
       }
-      /* 4. Уменьшаем робота до 150px */
+      /* Уменьшаем изображение робота до 150px */
       .intro-left img {
         width: 150px;
       }
-      /* 5. Сдвигаем весь контент справа от робота влево */
+      /* Сдвигаем контент справа от робота влево */
       .intro-right {
         margin-left: 0;
       }
@@ -342,134 +346,113 @@
     
     /* Дополнительные media-запросы для промежуточных размеров можно настроить по необходимости */
     @media (max-width: 576px) {
-      /* Пример корректировок для экранов до 576px */
+      /* Корректировки для устройств до 576px, если нужны */
     }
     @media (max-width: 768px) {
-      /* Корректировки для планшетов */
+      /* Корректировки для устройств до 768px */
     }
     @media (max-width: 992px) {
-      /* Корректировки для устройств с шириной до 992px */
+      /* Корректировки для устройств до 992px */
     }
     @media (max-width: 1200px) {
-      /* Корректировки для устройств с шириной до 1200px */
+      /* Корректировки для устройств до 1200px */
     }
     @media (max-width: 1920px) {
       /* Для больших экранов базовые стили остаются */
     }
-    
-    /* =============================== */
-    /* АДАПТИВНОЕ МАСШТАБИРОВАНИЕ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
-    /* =============================== */
-    /* При просмотре на мобильных устройствах страница уменьшается в размерах */
-    @media (max-width: 576px) {
-      .scale-container {
-        transform: scale(0.85);
-        transform-origin: top left;
-        width: 117.65%; /* 1/0.85 */
-      }
-    }
-    @media (max-width: 376px) {
-      .scale-container {
-        transform: scale(0.8);
-        transform-origin: top left;
-        width: 125%;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Обёртка для масштабирования страницы на мобильных устройствах -->
-  <div class="scale-container">
-    <!-- ШАПКА САЙТА -->
-    <div class="header-bar"></div>
-    <div class="header">
-      <div class="container">
-        <div class="header-content">
-          <!-- Логотип -->
-          <div class="logo">
-            <a href="https://interciti.ru/">
-              <img src="images/logo.png" alt="Интерсити Логотип">
+  <!-- ШАПКА САЙТА -->
+  <div class="header-bar"></div>
+  <div class="header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Логотип -->
+        <div class="logo">
+          <a href="https://interciti.ru/">
+            <img src="images/logo.png" alt="Интерсити Логотип">
+          </a>
+          <div class="logo-title">Интернет в дом и офис</div>
+        </div>
+        <!-- Контакты -->
+        <div class="contacts">
+          <div class="contact-info">
+            <!-- Информация о режиме работы -->
+            <div class="info">
+              <div>Вам ответят с 8.00 до 20.00</div>
+              <div>без выходных</div>
+            </div>
+          </div>
+          <!-- Телефоны -->
+          <div class="phones">
+            <a href="tel:+78007077384">
+              <img src="icons/phone-icon.png" alt="Телефон">8 (800) 707-73-84
             </a>
-            <div class="logo-title">Интернет в дом и офис</div>
-          </div>
-          <!-- Контакты -->
-          <div class="contacts">
-            <div class="contact-info">
-              <!-- Информация о режиме работы -->
-              <div class="info">
-                <div>Вам ответят с 8.00 до 20.00</div>
-                <div>без выходных</div>
-              </div>
-            </div>
-            <!-- Телефоны -->
-            <div class="phones">
-              <a href="tel:+78007077384">
-                <img src="icons/phone-icon.png" alt="Телефон">8 (800) 707-73-84
-              </a>
-              <a href="tel:+79997001010">
-                <img src="icons/phone-icon.png" alt="Телефон">8 (999) 700-10-10
-              </a>
-            </div>
+            <a href="tel:+79997001010">
+              <img src="icons/phone-icon.png" alt="Телефон">8 (999) 700-10-10
+            </a>
           </div>
         </div>
       </div>
-    </div>
-    <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
-    <div class="main-content">
-      <div class="container">
-        <!-- Контент (боковая панель удалена) -->
-        <div class="content">
-          <div class="intro">
-            <div class="intro-left">
-              <img src="images/robot.png" alt="Робот">
-            </div>
-            <div class="intro-right">
-              <h1>Уважаемый абонент!</h1>
-              <div class="warning">
-                <p>Доступ к услугам Интернет приостановлен</p>
-                <p>в связи с недостатком денежных средств</p>
-                <p>на лицевом счете</p>
-              </div>
-              <div class="info-payment">
-                <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
-                <p>MasterCard, Мир или СБП.</p>
-              </div>
-              <!-- Блок QR-кода -->
-              <div class="qr-payment">
-                <div class="qr-left">
-                  <img src="images/qr-code.png" alt="QR код">
-                </div>
-                <div class="qr-right">
-                  <p>Отсканировав QR код,</p>
-                  <p>вы перейдете на оплату</p>
-                  <p>без входа в личный кабинет</p>
-                  <p>в СбербанкОнлайн.</p>
-                </div>
-              </div>
-              <!-- Блок иконок магазинов -->
-              <div class="payment-options">
-                <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
-                  <img src="icons/sberbank-icon.png" alt="Сбербанк">
-                </a>
-                <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
-                  <img src="icons/ckassa-icon.png" alt="Центральная касса">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
-    <div class="app-download">
-      <p>Скачивайте наше приложение</p>
-      <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
-        <img src="icons/google-icon.png" alt="Google Play">
-      </a>
-      <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
-        <img src="icons/apple-icon.png" alt="App Store">
-      </a>
     </div>
   </div>
+  <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
+  <div class="main-content">
+    <div class="container">
+      <!-- Контент (боковая панель удалена) -->
+      <div class="content">
+        <div class="intro">
+          <div class="intro-left">
+            <img src="images/robot.png" alt="Робот">
+          </div>
+          <div class="intro-right">
+            <h1>Уважаемый абонент!</h1>
+            <div class="warning">
+              <p>Доступ к услугам Интернет приостановлен</p>
+              <p>в связи с недостатком денежных средств</p>
+              <p>на лицевом счете</p>
+            </div>
+            <div class="info-payment">
+              <p>Вы можете оплатить услуги в <a href="https://client.interciti.ru/" target="_blank">личном кабинете</a> картой Visa,</p>
+              <p>MasterCard, Мир или СБП.</p>
+            </div>
+            <!-- Блок QR-кода -->
+            <div class="qr-payment">
+              <div class="qr-left">
+                <img src="images/qr-code.png" alt="QR код">
+              </div>
+              <div class="qr-right">
+                <p>Отсканировав QR код,</p>
+                <p>вы перейдете на оплату</p>
+                <p>без входа в личный кабинет</p>
+                <p>в СбербанкОнлайн.</p>
+              </div>
+            </div>
+            <!-- Блок иконок магазинов -->
+            <div class="payment-options">
+              <a class="sberbank" href="https://www.sberbank.com/sms/mybill?cs=1923127932457" target="_blank">
+                <img src="icons/sberbank-icon.png" alt="Сбербанк">
+              </a>
+              <a class="ckassa" href="https://ckassa.ru/payment/#!search_provider/pt_search/111-14664-1/pay" target="_blank">
+                <img src="icons/ckassa-icon.png" alt="Центральная касса">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- НИЖНЯЯ ЧАСТЬ САЙТА -->
+  <div class="app-download">
+    <p>Скачивайте наше приложение</p>
+    <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
+      <img src="icons/google-icon.png" alt="Google Play">
+    </a>
+    <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
+      <img src="icons/apple-icon.png" alt="App Store">
+    </a>
+  </div>
+</div>
 </body>
 </html>
