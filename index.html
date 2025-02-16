@@ -131,8 +131,7 @@ html, body {
 .main-content {
   flex: 1;
   margin-top: 20px;
-  padding: 20px 0 40px;
-  padding-bottom: 80px; /* Добавляем место для зеленой полосы */
+  padding: 20px 0 80px; /* Добавляем место для зеленой полосы */
 }
 
 .intro {
@@ -240,6 +239,7 @@ html, body {
   .payment-options {
     margin-left: 0 !important; /* Сбрасываем центрирование */
     justify-content: flex-start; /* Выравниваем по левому краю */
+    gap: 15px; /* Уменьшаем отступ между кнопками */
   }
 
   .payment-options a {
@@ -272,8 +272,8 @@ html, body {
   font-weight: bold;
   color: white;
   text-align: center;
-  font-size: 18px; /* Уменьшаем размер шрифта */
-  padding: 15px; /* Уменьшаем внутренние отступы */
+  font-size: 18px;
+  padding: 15px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -292,18 +292,6 @@ html, body {
 .app-download a img {
   height: 35px; /* Уменьшаем размер иконок */
 }
-
-/* На мобильных устройствах делаем иконки компактнее */
-@media (max-width: 600px) {
-  .app-download p {
-    font-size: 16px; /* Уменьшаем размер текста */
-  }
-
-  .app-download a img {
-    height: 35px; /* Уменьшаем размер иконок */
-  }
-}
-
 /* =============================== */
 /* ЭФФЕКТЫ */
 /* =============================== */
