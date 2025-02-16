@@ -95,7 +95,7 @@
        ======================================= */
     @media (max-width: 600px) {
       .contacts .info, .logo-title, .qr-payment { display: none; }
-      .logo img { margin-left: -30px; }
+      .logo img { margin-left: -0; }
       .contacts .phones { flex-direction: column; margin-top: -10px; margin-left: 50px; }
       .intro-left img { width: 120px; }
       .warning, .info-payment, .qr-payment, .payment-options { text-align: left !important; margin-left: 0 !important; margin-right: 0 !important; }
@@ -152,7 +152,8 @@
        ======================================= */
     @media (max-width: 1200px) {
       #contact-widget {
-        display: block;
+        display: flex;
+        flex-direction: column;
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -260,8 +261,12 @@
   <!-- Нижняя часть сайта -->
   <div class="app-download">
     <p>Скачивайте наше приложение</p>
-    <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank"><img src="icons/google-icon.png" alt="Google Play"></a>
-    <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank"><img src="icons/apple-icon.png" alt="App Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank">
+      <img src="icons/google-icon.png" alt="Google Play">
+    </a>
+    <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank">
+      <img src="icons/apple-icon.png" alt="App Store">
+    </a>
   </div>
   
   <!-- Виджет для WhatsApp и Telegram (показывается только для экранов до 1200px) -->
