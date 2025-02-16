@@ -386,14 +386,7 @@ a:hover {
   .logo { margin-left: 50px; }
   .logo-title { margin-left: 10px; }
   .contacts { margin-right: 50px; }
-}
-@media (max-width: 768px) {
-  .header { flex-direction: column; align-items: center; padding: 10px; }
-  .logo { margin-left: 0; margin-bottom: 10px; }
-  .contacts { flex-direction: column; align-items: center; margin-right: 0; gap: 10px; }
-  .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
-  .app-download { font-size: 22px; }
-   /* Добавляем нижний отступ, чтобы зеленая полоса не перекрывала контент */
+     /* Добавляем нижний отступ, чтобы зеленая полоса не перекрывала контент */
   .app-download {
     position: static;
   }
@@ -410,6 +403,13 @@ a:hover {
   .main-content {
     flex: 1;
   }
+}
+@media (max-width: 768px) {
+  .header { flex-direction: column; align-items: center; padding: 10px; }
+  .logo { margin-left: 0; margin-bottom: 10px; }
+  .contacts { flex-direction: column; align-items: center; margin-right: 0; gap: 10px; }
+  .main-content { flex-direction: column; align-items: center; margin-top: 20px; padding: 10px; }
+  .app-download { font-size: 22px; }
 }
   </style>
 </head>
