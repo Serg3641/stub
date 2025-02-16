@@ -210,13 +210,6 @@ html, body {
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
-  /* Скрываем информацию о режиме работы */
-  .contacts .info,
-  .logo-title,
-  .qr-payment {
-    display: none;
-  }
-
   /* Уменьшаем размер робота */
   .intro-left img {
     width: 120px;
@@ -230,6 +223,13 @@ html, body {
     margin-left: 0 !important; /* Сбрасываем левый отступ */
     justify-content: flex-start !important; /* Выравниваем слева */
     gap: 15px; /* Уменьшаем отступ между иконками */
+  }
+
+  /* Сохраняем .intro-right видимым */
+  .intro-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   /* Центрируем заголовок */
