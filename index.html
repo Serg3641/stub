@@ -95,7 +95,7 @@
        ======================================= */
     @media (max-width: 600px) {
       .contacts .info, .logo-title, .qr-payment { display: none; }
-      .logo img { margin-left: 0; }
+      .logo img { margin-left: -30px; }
       .contacts .phones { flex-direction: column; margin-top: -10px; margin-left: 50px; }
       .intro-left img { width: 120px; }
       .warning, .info-payment, .qr-payment, .payment-options { text-align: left !important; margin-left: 0 !important; margin-right: 0 !important; }
@@ -145,6 +145,32 @@
       .app-download { position: static; }
       body { display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 0; }
       .main-content { flex: 1; }
+    }
+    
+    /* =======================================
+       Виджет для WhatsApp и Telegram (только для экранов до 1200px)
+       ======================================= */
+    @media (max-width: 1200px) {
+      #contact-widget {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+      }
+      #contact-widget a img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    @media (min-width: 1201px) {
+      #contact-widget { display: none; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
@@ -236,6 +262,16 @@
     <p>Скачивайте наше приложение</p>
     <a href="https://play.google.com/store/apps/details?id=ru.interciti.smartyard_oem" target="_blank"><img src="icons/google-icon.png" alt="Google Play"></a>
     <a href="https://apps.apple.com/ru/app/интерсити/id6503944919" target="_blank"><img src="icons/apple-icon.png" alt="App Store"></a>
+  </div>
+  
+  <!-- Виджет для WhatsApp и Telegram (показывается только для экранов до 1200px) -->
+  <div id="contact-widget">
+    <a href="https://wa.me/79997001010" target="_blank">
+      <img src="icons/whatsapp-icon.png" alt="WhatsApp">
+    </a>
+    <a href="https://t.me/+79997001010" target="_blank">
+      <img src="icons/telegram-icon.png" alt="Telegram">
+    </a>
   </div>
 </body>
 </html>
