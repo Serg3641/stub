@@ -131,13 +131,18 @@ html, body {
 .main-content {
   flex: 1;
   margin-top: 20px;
-  padding: 20px 0 80px; /* Добавляем место для зеленой полосы */
+  padding: 20px 0 40px;
 }
 
 .intro {
   display: flex;
   gap: 20px;
   align-items: flex-start;
+}
+
+.intro-left {
+  position: relative; /* Для абсолютного позиционирования payment-options */
+  flex: 1;
 }
 
 .intro-left img {
@@ -200,12 +205,10 @@ html, body {
   display: flex;
   gap: 30px;
   margin-top: 30px;
-  margin-left: calc(2 * var(--base-spacing));
+  margin-left: calc(2 * var(--base-spacing)); /* Отступ для десктопа */
 }
 
-/* =============================== */
-/* АДАПТИВНЫЕ СТИЛИ */
-/* =============================== */
+/* Адаптивность для мобильных устройств */
 @media (max-width: 600px) {
   /* Скрываем информацию о режиме работы */
   .contacts .info,
@@ -219,6 +222,16 @@ html, body {
     width: 120px;
   }
 
+  /* Перемещаем .payment-options в .intro-left */
+  .payment-options {
+    position: absolute; /* Перемещаем иконки внутрь .intro-left */
+    top: calc(100% + 20px); /* Размещаем их ниже робота */
+    left: 0; /* Выравниваем по левому краю */
+    margin-left: 0 !important; /* Сбрасываем левый отступ */
+    justify-content: flex-start !important; /* Выравниваем слева */
+    gap: 15px; /* Уменьшаем отступ между иконками */
+  }
+
   /* Центрируем заголовок */
   .bottom-info h1 {
     text-align: left !important;
@@ -226,36 +239,20 @@ html, body {
     margin-right: 0 !important;
   }
 
-  /* Центрируем остальной контент */
+  /* Выравниваем остальной контент по левому краю */
   .warning,
   .info-payment {
     text-align: left !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    font-size: 16px; /* Уменьшаем размер шрифта */
+    font-size: 16px;
   }
 
-  /* Выравнивание payment-options */
-  .payment-options {
-    margin-left: 0 !important; /* Сбрасываем центрирование */
-    justify-content: flex-start; /* Выравниваем по левому краю */
-    gap: 15px; /* Уменьшаем отступ между кнопками */
-  }
-
-  /* Адаптивность текста */
-  .container {
-    max-width: 100%; /* Убираем ограничение ширины */
-    padding: 0 15px; /* Добавляем внутренние отступы */
-  }
-
-  .info-payment p,
-  .warning p {
-    font-size: 14px; /* Уменьшаем размер шрифта */
-    word-break: break-word; /* Разрешаем перенос длинных слов */
-  }
-
-  .qr-right p {
-    font-size: 12px; /* Уменьшаем размер шрифта для QR-текста */
+  /* Скрываем текстовые блоки из .intro-right */
+  .warning,
+  .info-payment,
+  .qr-payment {
+    display: none;
   }
 }
 
@@ -273,7 +270,7 @@ html, body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  white-space: nowrap; /* Убираем лишние пробелы */
+  white-space: nowrap;
 }
 
 .app-download p {
@@ -286,8 +283,9 @@ html, body {
 }
 
 .app-download a img {
-  height: 35px; /* Уменьшаем размер иконок */
+  height: 35px;
 }
+
 /* =============================== */
 /* ЭФФЕКТЫ */
 /* =============================== */
@@ -303,7 +301,6 @@ a:hover {
 .payment-options a:hover,
 .app-download a:hover {
   transform: translateY(-10px);
-  transition: transform 0.3s ease-in-out; /* Добавляем плавность */
 }
   </style>
 </head>
