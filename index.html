@@ -286,9 +286,14 @@
       .intro-left img {
         width: 120px;
       }
-      /* Сдвигаем номера телефонов влево */
+      .header {
+        padding: 10px 15px; /* уменьшаем отступы в шапке */
+      }
+      .header-content {
+        flex-wrap: wrap; /* разрешаем перенос элементов, если не помещаются */
+      }
       .contacts .phones {
-        margin-left: -10px;
+        margin-left: 0 !important; /* убираем отрицательный отступ */
       }
       /* Перестраиваем секцию .intro с помощью CSS grid:
          - Первая строка: блок с заголовком (grid-area "greeting")
