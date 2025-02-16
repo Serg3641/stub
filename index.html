@@ -309,6 +309,23 @@
           "payment rest";
         gap: 10px;
       }
+      .intro-left {
+        grid-area: robot;
+      }
+      .top-info {
+        grid-area: warning;
+      }
+      /* Переносим блок с иконками оплаты в левую колонку */
+      .payment-options {
+        grid-area: payment;
+        justify-self: start;
+        margin-left: 0 !important;
+      }
+      .bottom-info {
+        grid-area: bottom;
+        width: 100%;
+        margin-top: 10px;
+      }
       /* Назначаем grid-области для элементов, являющихся потомками .intro-right */
       /* Перемещаем заголовок "Уважаемый абонент!" в область greeting */
       .bottom-info h1 {
@@ -329,13 +346,6 @@
         grid-area: rest;
         margin-left: 0 !important;
         text-align: left !important;
-      }
-      /* Иконки оплаты (.payment-options) переносим в область payment (левый столбец под роботом) */
-      .payment-options {
-        grid-area: payment;
-        justify-self: start;
-        margin-left: 0 !important;
-        margin-top: 10px !important;
       }
       .payment-options img {
         height: 20px !important;
