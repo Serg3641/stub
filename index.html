@@ -260,18 +260,22 @@ a:hover {
     display: none;
   }
   
+  .logo img {
+    margin-left: -30px;
+  }
+  
   /* Размещаем телефоны в колонку */
   .contacts .phones {
     flex-direction: column;
     margin-top: -10px;
     margin-left: 50px;
   }
-
+  
   /* Уменьшаем размер робота */
   .intro-left img {
     width: 120px;
   }
-
+  
   /* Центрируем остальной контент */
   .warning,
   .info-payment,
@@ -281,14 +285,19 @@ a:hover {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-
+  
+  .warning {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
   /* На мобильных устройствах размещаем QR-код по центру */
   .qr-payment {
     flex-direction: column;
     align-items: center;
     margin-left: 0 !important;
   }
-
+  
   /* Модифицируем сетку для секции .intro */
   .intro {
     display: grid;
@@ -299,12 +308,15 @@ a:hover {
       "bottom bottom";
     gap: 10px;
   }
+  
   .intro-left {
     grid-area: robot;
   }
+  
   .intro-right {
     display: contents;
   }
+  
   .top-info {
     grid-area: warning;
     margin: 0 !important;
@@ -312,26 +324,31 @@ a:hover {
     font-size: 16px;
     line-height: 1.2;
   }
+  
   .top-info .warning {
-    font-size: 16px;
-    margin-top: 30px;
+    font-size: 20px;
+    margin: 0 !important;
   }
+  
   .bottom-info {
     grid-area: bottom;
     width: 100%;
-    margin-top: 0;
+    margin-top: 10px;
   }
+  
   .bottom-info h1 {
     margin-left: 0 !important;
     margin-right: 0 !important;
     text-align: left !important;
     font-size: 18.5px;
   }
+  
   .info-payment,
   .qr-payment {
     margin-left: 0 !important;
     text-align: left !important;
   }
+  
   /* Правка: размещаем блок payment-options в первой колонке (слева) под роботом */
   .payment-options {
     grid-column: 1 / 2;
@@ -339,8 +356,16 @@ a:hover {
     margin-top: 40px !important;
     margin-left: 0 !important;
   }
+  
   .payment-options img {
     height: 20px !important;
+  }
+  
+  /* Новая правка: заставляем блок .info-payment занимать всю ширину main-content,
+     но содержимое оставляем выровненным по левому краю */
+  .info-payment {
+    grid-column: 1 / -1;
+    text-align: left;
   }
 }
 
