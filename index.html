@@ -32,7 +32,7 @@
     .container {
       max-width: 880px; width: 100%; margin: 0 auto; padding: 0 15px;
     }
-
+    
     /* =======================================
        ШАПКА САЙТА
        ======================================= */
@@ -48,7 +48,7 @@
     .contacts .phones { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
     .contacts .phones a { display: flex; align-items: center; gap: 5px; font-weight: 600; color: #000; font-size: 18.5px; text-decoration: none; white-space: nowrap; transition: color var(--transition-speed); }
     .contacts .phones a:hover { color: var(--link-color); }
-
+    
     /* =======================================
        ОСНОВНОЕ СОДЕРЖИМОЕ
        ======================================= */
@@ -63,7 +63,7 @@
     .qr-left img { width: 150px; transition: transform var(--transition-speed); }
     .qr-right { background-color: var(--primary); color: #fff; padding: 10px; border-radius: 4px; }
     .payment-options { display: flex; gap: 30px; margin-top: 30px; margin-left: calc(2 * var(--base-spacing)); }
-
+    
     /* =======================================
        НИЖНЯЯ ЧАСТЬ САЙТА (ФУТЕР)
        ======================================= */
@@ -82,20 +82,20 @@
     .app-download p { margin-bottom: 20px; font-size: 22px; }
     .app-download a { display: inline-block; margin: 0 10px; }
     .app-download a img { height: 35px; }
-
+    
     /* =======================================
        ЭФФЕКТЫ (Hover)
        ======================================= */
     a:hover { opacity: 0.9; }
     .logo:hover img, .intro-left img:hover { transform: scale(1.10); }
     .payment-options a:hover, .app-download a:hover { transform: translateY(-10px); }
-
+    
     /* =======================================
        АДАПТИВНЫЕ СТИЛИ (Только для мобильных)
        ======================================= */
     @media (max-width: 600px) {
       .contacts .info, .logo-title, .qr-payment { display: none; }
-      .logo img { margin-left: 0; }
+      .logo img { margin-left: -30px; }
       .contacts .phones { flex-direction: column; margin-top: -10px; margin-left: 50px; }
       .intro-left img { width: 120px; }
       .warning, .info-payment, .qr-payment, .payment-options { text-align: left !important; margin-left: 0 !important; margin-right: 0 !important; }
@@ -122,7 +122,7 @@
       body { display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 0; }
       .main-content { flex: 1; }
     }
-
+    
     /* =======================================
        АДАПТИВНЫЕ СТИЛИ для экранов до 1200px и 768px (без изменений)
        ======================================= */
@@ -182,7 +182,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
   <div class="main-content">
     <div class="container">
@@ -230,7 +230,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Нижняя часть сайта -->
   <div class="app-download">
     <p>Скачивайте наше приложение</p>
